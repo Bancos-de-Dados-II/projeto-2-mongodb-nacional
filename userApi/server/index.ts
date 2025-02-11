@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import routes from "../routes/userRoutes";
-import ClientDB from "../mongoClient/ClientDB";
+import ClientDB from "../database/ClientDB";
 
 //env variables
 dotenv.config();
