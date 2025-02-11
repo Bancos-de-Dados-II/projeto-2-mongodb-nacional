@@ -28,9 +28,8 @@ export default class UserControll {
             const { email } = request.query as {email: string};
 
             const result = await this.userService.findByEmail(email);
-
+            //retorna um UserDTO com as informações principais: nome, email e senha
             response.status(200).send(result);
-
         } catch(error) {
             const asError = error as Error;
 
