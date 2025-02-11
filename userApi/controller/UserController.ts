@@ -23,4 +23,21 @@ export default class UserControll {
         }
     }
 
+    public findByEmail = async (request:Request, response:Response) => {
+        try {
+            const { email } = request.query as {email: string};
+
+            const result = await this.userService.findByEmail(email);
+
+            response.status(200).send(result);
+
+        } catch(error) {
+            const asError = error as Error;
+
+            response.status(404).send({
+                message: asError.message
+            })
+        }
+    }
+
 }

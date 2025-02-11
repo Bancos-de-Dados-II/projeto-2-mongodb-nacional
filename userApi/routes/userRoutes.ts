@@ -8,5 +8,6 @@ const controller = new UserControll();
 
 //espera receber o email
 routes.post('/', controller.save);
+routes.get('/:email', controller.findByEmail);
 
 export default routes;

@@ -12,4 +12,15 @@ export default class UserService {
             throw new Error(`Error in save one: ${error}`);
         }
     }
+
+    public findByEmail = async (email: string) => {
+        try {
+            const response = await this.userRepository.findByEmail(email);
+            return response;
+        } catch(error) {
+            const asError = error as Error;
+
+            throw new Error(asError.message);
+        }
+    }
 }
