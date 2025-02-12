@@ -1,12 +1,19 @@
 import { Router } from "express";
-import MapController from "../controller/MapController";
+import {criarLocalizacao, buscarLocalizacoes, deletarLocalizacaoPorNome}from "../controller/MapController";
 
 const mapRouter = Router();
 
 //controlador
-const mapController = new MapController();
+//const mapController = new MapController();
 
 //adição das rotas
-mapRouter.get('/', mapController.findAll);
+
+mapRouter.post('/',criarLocalizacao)
+mapRouter.get('/', buscarLocalizacoes)
+mapRouter.delete('/localizacao/:nome', deletarLocalizacaoPorNome);
+
+
+
+
 
 export default mapRouter;

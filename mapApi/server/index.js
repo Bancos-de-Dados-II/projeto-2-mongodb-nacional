@@ -9,6 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 //rotas
 app.use('/map', mapRouter);
 
