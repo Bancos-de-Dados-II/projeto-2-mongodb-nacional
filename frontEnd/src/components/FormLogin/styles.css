@@ -1,0 +1,31 @@
+.form-login{
+   background-color: beige;
+   display: flex;
+   flex-direction: column;
+}
+.email-text{
+    margin: 25px;
+}
+.email-input{
+    margin-left: 29px;
+    margin-right: 25px;
+}
+.password-text{
+    margin: 25px;
+}
+.password-input{
+    margin-left: 29px;
+    margin-right: 25px;
+    margin-bottom: 50px;
+}
+.login-text{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-campos{
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+}
