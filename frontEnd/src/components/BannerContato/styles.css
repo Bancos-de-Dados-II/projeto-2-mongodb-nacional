@@ -10,18 +10,18 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.banner-text> h1, h2{
+.banner-text .titulo-banner ,.descricao-banner{
     color: #fff;
     padding-left: 73px;
 }
 
-.banner-text > h1 {
+.banner-text,  .titulo-banner {
     font-size: 48px;
     margin: 0;
 
 }
 
-.banner-text> h2 {
+.banner-text .descricao-banner{
     font-size: 18px;
     max-width: 400px;
     line-height: 3.2ch;
