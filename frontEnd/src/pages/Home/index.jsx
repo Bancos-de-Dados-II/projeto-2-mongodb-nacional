@@ -21,6 +21,8 @@ export default function Home() {
             <ServicesSection />
             <Testemoials />
             <Features />
+
+            
             <GenericSection
                 prev={"Entre em contato"}
                 title={"Fale Conosco"}

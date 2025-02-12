@@ -1,5 +1,7 @@
 import "./styles.css"
 import { Link } from "react-router-dom";
+import Contato from "../../pages/Contato";
+
 
 export default function Navigation() {
     return (
@@ -15,7 +17,7 @@ export default function Navigation() {
                     <Link to={"/"}>Serviços</Link>
                 </li>
                 <li>
-                    <Link to={"/"}>Contato</Link>
+                    <Link to="/Contato">Contato</Link>
                 </li>
             </ul>
         </nav>

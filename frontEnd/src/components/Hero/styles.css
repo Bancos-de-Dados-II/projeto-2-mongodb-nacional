@@ -4,9 +4,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+
+    
 }
 
-.text-hero-content {
+.text-hero-content, .titulo-hero {
     color: #fff;
 }
 
