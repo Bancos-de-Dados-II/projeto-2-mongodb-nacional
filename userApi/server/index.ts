@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import routes from "../routes/userRoutes";
 import ClientDB from "../database/ClientDB";
+import redisRouter from "../routes/redisRouter";
 
 //env variables
 dotenv.config();
@@ -16,6 +17,9 @@ app.use(cors());
 
 //users
 app.use('/users', routes);
+
+//redis
+app.use('/memory-data', redisRouter);
 
 //set port server
 app.listen(process.env.PORT, () => {

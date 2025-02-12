@@ -11,6 +11,14 @@ export default class UserDTO implements IUser {
         this.password = password;
     }
 
+    public getData = () => {
+        return {
+            name: this.name,
+            email: this.email,
+            password: this.password
+        }
+    }
+
     public getName = (): string => {
         return this.name;
     }
