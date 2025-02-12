@@ -5,8 +5,8 @@ export default function BannerContato(){
 
         <section className="banner-contato">
             <div className="banner-text">
-                <h1>Contato</h1>
-                <h2>Ficou com duvidas sobre os nossos serviços? Nos envie uma mensagem! </h2>
+                <h1 className="titulo-banner">Contato</h1>
+                <h2 className="descricao-banner">Ficou com duvidas sobre os nossos serviços? Nos envie uma mensagem! </h2>
             </div>
         </section>
     )
