@@ -4,7 +4,7 @@ import { ErrorMessage } from "@hookform/error-message";
 
 
 export default function FormRegister(){
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm({mode: "onBlur"});
     const onSubmit = (data) => console.log(data );
 
     return (
@@ -14,23 +14,48 @@ export default function FormRegister(){
             </div>
             <div className="form-campos">
                 <form onSubmit={ handleSubmit(onSubmit)}>
-                    <label className="password-text">Insira seu nome:</label>
-                     <input {...register("firstName", { required: true, maxLength: 20 })} />
-                    <ErrorMessage errors={ errors } name="firstName" message="Nome deve ter meno de 20 caracteres" as = "span" />
+                    <label className="name-text">Insira seu nome:</label>
+                     <input type = "text" {...register("InserirNome", { required: true, maxLength: 120 })} />
+                    <ErrorMessage errors={ errors } name="InserirNome" message="Nome deve ter menos de 120 caracteres" as = "span" />
 
                     <br/>
-                    <label className="password-text">Insira seu Email:</label>
-                    <input name = "InserirEmail" ref= { register()}/>
+                    <label className="email-text">Insira seu Email:</label>
+                    <input type="email" {...register("InserirEmail",{
+                        required: "O email é obrigatório",
+                        pattern:{
+                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            message: "Email inválido"
+                        },   
+                        maxLength:{
+                            value: 50,
+                            message: "O email deve ter no máximo 50 caracteres"
+                        }
+                        })} 
+                        />
+                        <ErrorMessage errors={ errors } name="InserirEmail" message={errors.email?.message} as = "span" />
+                        
+
                     <br/>
-                    <label className="password-text">Telefone:</label>
-                    <input name = "InserirTelefone" ref= { register()}/>
+                    <label className="telefone-text">Telefone:</label>
+                    <input type = "tel" pattern="[0-9]{11}" {...register("InserirTelefone", { 
+                        required: true,
+                        maxLength:{
+                            value:11,
+                            message: "O telefone deve possuir no máximo 11 números"
+                        } })} />
+                    <ErrorMessage errors={ errors } name="InserirTelefone" message={errors.tel?.message} as = "span" />
+
                     <br/>
-                    <label className="password-text">Senha:</label>
-                    <input name = "InserirSenha" ref= { register()}/>
+                    <label className="senha-text">Criar Senha:</label>
+                    <input type="password"{...register("InserirSenha", { required: true, minLength: 6 })} />
+                    <ErrorMessage errors={ errors } name="InserirSenha" message="Deve haver pelo menos 6 caracteres" as = "span" />
                     <br/>
-                    <label className="password-text">Localização:</label>
-                    <input name = "InserirLocalizacao" ref= { register()}/>
+
+                    <label className="localizacao-text">Localização:</label>
+                    <input {...register("InserirLocalizacao", { required: true, minLength: 6 })} />
+                    <ErrorMessage errors={ errors } name="InserirLocalizacao" message="Deve possuir formato valido" as = "span" />
                     <br/>
+
                     <button onSubmit={handleSubmit(onSubmit)}>Enviar</button>
                 </form>
             </div>     
