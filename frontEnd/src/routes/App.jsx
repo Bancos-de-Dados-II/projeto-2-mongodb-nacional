@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
+import { Login } from "../pages/Login";
+import { Register } from "../pages/Register";
 import Contato from "../pages/Contato"
 import PaginaMapa from "../pages/Mapa";
 
@@ -13,6 +15,8 @@ export default function App() {
         <Route path="/login" element={""} />
         <Route path="/cadastro" element={""} />
         <Route path="/servicos" element={<PaginaMapa />} />
+        <Route path="/login" element={<Login/>} />
+        <Route path="/cadastro" element={<Register/>} />
       </Routes>
     </Router>
   );
