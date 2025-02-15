@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Contato from "../pages/Contato"
+import PaginaMapa from "../pages/Mapa";
 
 //rotas para paginação entre telas
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         <Route path="/contato" element={<Contato />} />
         <Route path="/login" element={""} />
         <Route path="/cadastro" element={""} />
+        <Route path="/servicos" element={<PaginaMapa />} />
       </Routes>
     </Router>
   );
