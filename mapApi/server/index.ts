@@ -6,7 +6,7 @@ import mapRouter from '../routes/mapRouter';
 const app = express();
 
 //configurações gerais do servidor
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:1010/map'}));
 app.use(express.json());
 
 
