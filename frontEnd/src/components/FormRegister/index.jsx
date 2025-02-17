@@ -1,30 +1,18 @@
 import "./styles.css"
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import UserServices from "../../services/user/UserServices";
 
 
 export default function FormRegister(){
+    const userService = new UserServices();
+
     const { register, handleSubmit, formState: { errors } } = useForm({mode: "onBlur"});
 
     const onSubmit = async (data) => {
-
-        const request = new Request("http://localhost:5151/users", 
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: data.nome,
-                    email: data.email,
-                    password: data.senha
-                })
-            }
-        );
-
-        const response = await fetch(request);
-
-        console.log(response);
+        const result = await userService.save(data);
+        
+        console.log(result);
     };
 
     return (
