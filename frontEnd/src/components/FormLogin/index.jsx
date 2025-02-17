@@ -1,9 +1,11 @@
+import LocalStorageService from "../../services/localStorage/LocalStorageService";
 import UserServices from "../../services/user/UserServices";
 import "./styles.css"
 
 export default function FormLogin() {
 
-    const userService = new UserServices()
+    const userService = new UserServices();
+    const storageService = new LocalStorageService();
 
     const onSubmit = async () => {
         //const { email } = data;
@@ -15,6 +17,7 @@ export default function FormLogin() {
 
         if (isOk) {
             userService.redirectPage("servicos");
+            storageService.setData(email);
         }
     };
 
