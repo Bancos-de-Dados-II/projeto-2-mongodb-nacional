@@ -5,8 +5,8 @@ import mapRouter from '../routes/mapRouter';
 
 const app = express();
 
-//configurações gerais do servidor
-app.use(cors({ origin: 'http://localhost:1010/map'}));
+//configurações gerais do servidor. Porta padrão do vite
+app.use(cors({ origin: 'http://localhost:5173'}));
 app.use(express.json());
 
 
