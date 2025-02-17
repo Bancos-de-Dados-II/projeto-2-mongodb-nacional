@@ -11,8 +11,13 @@ export default function FormRegister(){
 
     const onSubmit = async (data) => {
         const result = await userService.save(data);
+
+        if (result) {
+            userService.redirectPage("login");
+            alert("Conta criada com sucesso!");
+        }
         
-        console.log(result);
+        alert("Falha ao criar conta, tente novamente");
     };
 
     return (

@@ -25,8 +25,8 @@ function Mapa() {
 
   useEffect(() => {
     if (!storage.getData()) {
-      alert("Você não está autorizado para acessar essa página");
-      userService.redirectPage("");
+      alert("Você não está autorizado a acessar essa página, faça o login e tente novamente");
+      userService.redirectPage("login");
     }
 
     axiosApi

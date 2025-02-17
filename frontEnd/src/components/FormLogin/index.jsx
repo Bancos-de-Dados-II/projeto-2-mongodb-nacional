@@ -7,16 +7,18 @@ export default function FormLogin() {
     const userService = new UserServices();
     const storageService = new LocalStorageService();
 
+    //deve receber data
     const onSubmit = async () => {
-        //const { email } = data;
+        //const { email, password } = data;
         const email = "pires@gmail.com"
     
         const userJson = await userService.get(email);
 
-        const isOk = await userService.validateUser(userJson, "12345678")
+        const isOk = await userService.validateUser(userJson, "12345678");
 
         if (isOk) {
             userService.redirectPage("servicos");
+            alert("Aproveite a plataforma!");
             storageService.setData(email);
         }
     };
