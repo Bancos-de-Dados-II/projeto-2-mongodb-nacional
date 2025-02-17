@@ -1,3 +1,5 @@
+import bcryptjs from "bcryptjs";
+
 export default class UserServices {
 
     save = async (data) =>{
@@ -21,7 +23,7 @@ export default class UserServices {
     }
 
     get = async (email) => {
-        const request = new Request(`http://localhost:5151/users/email?${email}`, {
+        const request = new Request(`http://localhost:5151/users/${email}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -30,6 +32,20 @@ export default class UserServices {
 
         const userReturned = await fetch(request);
 
-        return userReturned;
+        return await userReturned.json();
+    }
+
+    validateUser = async (user, passwordInformed) => {
+        const userPasswordCript = user.password;
+
+        console.log(userPasswordCript);
+
+        const result = await bcryptjs.compare(passwordInformed, userPasswordCript);
+
+        return result;
+    }
+
+    redirectPage = (page) => {
+        window.location.href = `/${page}`;
     }
 }
