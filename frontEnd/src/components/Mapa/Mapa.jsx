@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import axiosApi from "../../axios";
 import logo from"../../../public/img/pinmapa.png";
 import "../Mapa/styles.css"
 
 import LocationMarker from "../LocalizacaoAtual/index.jsx"
+import LocalStorageService from "../../services/localStorage/LocalStorageService.js";
+import UserServices from "../../services/user/UserServices.js";
 
 const customIcon = new L.Icon({
   iconUrl: logo,
@@ -16,11 +18,17 @@ const customIcon = new L.Icon({
 });
 
 function Mapa() {
+  const storage = new LocalStorageService();
+  const userService = new UserServices();
+
   const [locais, setLocais] = useState([]);
 
-
-
   useEffect(() => {
+    if (!storage.getData()) {
+      alert("Você não está autorizado a acessar essa página, faça o login e tente novamente");
+      userService.redirectPage("login");
+    }
+
     axiosApi
       .get("http://localhost:1010/map")
       .then((res) => {
