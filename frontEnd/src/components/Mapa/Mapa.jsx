@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import axiosApi from "../../axios";
 import logo from"../../../public/img/pinmapa.png";
 import "../Mapa/styles.css"
+
+import LocationMarker from "../LocalizacaoAtual/index.jsx"
 
 const customIcon = new L.Icon({
   iconUrl: logo,
@@ -15,6 +17,8 @@ const customIcon = new L.Icon({
 
 function Mapa() {
   const [locais, setLocais] = useState([]);
+
+
 
   useEffect(() => {
     axiosApi
@@ -28,12 +32,14 @@ function Mapa() {
       });
   }, []);
 
+
   return (
+    
 
    <div className="container-mapa">
     <MapContainer 
     className="mapa"
-      center={[-6.872043381486839, -38.558450105874826]}
+      center={[-6.888601818211769, -38.56707625327777]}
       zoom={13}
       style={{ height: "500px", width: "50%" }}
     >
@@ -55,6 +61,7 @@ function Mapa() {
           <Popup>{local.localizacao.nome}</Popup>
         </Marker>
       ))}
+       <LocationMarker />
     </MapContainer>
     </div>
    
