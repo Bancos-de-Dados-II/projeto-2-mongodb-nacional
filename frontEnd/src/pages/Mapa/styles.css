@@ -1,0 +1,14 @@
+.mapa{
+   display: flex;
+   align-items: center;
+   
+   
+
+}
+
+.mapa-inside{
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}

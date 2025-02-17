@@ -1,0 +1,5 @@
+.container-mapa {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 10px;
+  }
