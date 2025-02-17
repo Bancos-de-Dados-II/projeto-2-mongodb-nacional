@@ -35,7 +35,7 @@ function Mapa() {
     className="mapa"
       center={[-6.872043381486839, -38.558450105874826]}
       zoom={13}
-      style={{ height: "500px", width: "50%", display:'flex',justifyContent:"flex-end" }}
+      style={{ height: "500px", width: "50%" }}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
