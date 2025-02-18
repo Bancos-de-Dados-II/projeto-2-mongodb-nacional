@@ -1,0 +1,28 @@
+.form-cadastro-localizacao form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-cadastro-localizacao, input {
+    flex-grow: 1; 
+    min-width: 380px; 
+    padding: 8px;
+    font-size: 16px;
+    padding-top: 20px;
+}
+
+.form-cadastro-localizacao button {
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-style: none;
+    border-radius: 5px;
+    background-color: #6A1E2E;
+    color: #fff;
+}
+button:hover {
+    transform: scale(1.1); 
+    cursor: pointer;
+}

@@ -1,5 +1,18 @@
-.container-mapa {
+
+.flex-container {
     display: flex;
-    justify-content: flex-end;
-    border-radius: 10px;
+    align-items: flex-start; 
+    gap: 60px; 
   }
+  .campo-busca {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+
+   
+    width: 100%; 
+    max-width: 400px; 
+    border-radius: 10px; 
+    margin: auto;
+}

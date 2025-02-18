@@ -22,7 +22,7 @@ export class MapController {
       res.status(201).json(resultado);
     } catch (error) {
       console.log(error);
-      res.status(404).json({ error: 'Erro ao criar nova localização' });
+      res.status(500).json({ error: 'Erro ao criar nova localização' });
     }
   }
 
