@@ -37,7 +37,7 @@ export default function FormRegister(){
 
                     <br/>
                     <label className="telefone-text">Telefone:</label>
-                    <input type = "tel" pattern="[0-9]{11}" {...register("InserirTelefone", { 
+                    <input type = "tel" {...register("InserirTelefone", { 
                         required: true,
                         maxLength:{
                             value:11,
