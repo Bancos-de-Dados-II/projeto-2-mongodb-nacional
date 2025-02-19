@@ -17,6 +17,7 @@ export default function Home() {
                 title={"ReCircular"} 
                 content={"A ReCircular é uma startup desenvolvida com a missão de tornar o mundo um lugar mais acolhedor para se viver, e visa auxiliar pessoas que querem se desfazer de itens em bom estado a encontrarem pessoas para realizar a troca ou doação, fazendo assim com que os produtos ganhem sobre-vida de mercado"}
                 pathImg={"img/logo-icon.png"}
+                linkButton={"/servicos"}
             />
             <ServicesSection />
             <Testemoials />
