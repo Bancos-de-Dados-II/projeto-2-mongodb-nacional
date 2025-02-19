@@ -34,7 +34,7 @@ export default class UserService {
             
             const userDto = new UserDTO(response.name as string, response.email as string, response.password as string);
 
-            return userDto;
+            return userDto.getData();
         } catch(error) {
             const asError = error as Error;
 

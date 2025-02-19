@@ -1,4 +1,3 @@
-import React from "react";
 import "../FormContato/styles.css"
 
 import iconeTelefone from "../../../public/img/telefone-contato.png";
