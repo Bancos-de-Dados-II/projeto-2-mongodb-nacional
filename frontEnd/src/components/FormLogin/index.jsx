@@ -1,5 +1,6 @@
 import LocalStorageService from "../../services/localStorage/LocalStorageService";
 import UserServices from "../../services/user/UserServices";
+import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import "./styles.css"
 
@@ -8,10 +9,11 @@ export default function FormLogin() {
     const userService = new UserServices();
     const storageService = new LocalStorageService();
 
+ 
     //deve receber data
-    const onSubmit = async () => {
-        //const { email, password } = data;
-        const email = "pires@gmail.com"
+    const onSubmit = async (data) => {
+        const { email, password } = data;
+        // const email = "pires@gmail.com"
     
         const userJson = await userService.get(email);
 
@@ -22,6 +24,10 @@ export default function FormLogin() {
             alert("Aproveite a plataforma!");
             storageService.setData(email);
         }
+        else{
+            alert("Email ou senha incorretos!");
+        }
+        
     };
 
     return (
@@ -32,11 +38,26 @@ export default function FormLogin() {
             <div className="form-campos">
                 <form action="#">
                     <label className="email-text">Insira seu email:</label>
-                    <input className="email-input"></input>
+                    <input className="email-input" type="email" {...register("email",{
+                        required: "O email é obrigatório",
+                        pattern:{
+                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                            message: "Email inválido"
+                        },   
+                        maxLength:{
+                            value: 50,
+                            message: "O email deve ter no máximo 50 caracteres"
+                        }
+                        })} 
+                        />
+                        <ErrorMessage errors={ errors } name="email" message={errors.email?.message} as = "span" />
+                    <br/>
                     <label className="password-text">Insira sua senha:</label>
-                    <input className="password-input"></input>
+                    <input className="password-input" type="password"{...register("password", { required: true, minLength: 6 })} />
+                    <ErrorMessage errors={ errors } name="senha" message="Deve haver pelo menos 6 caracteres" as = "span" />
+                    <br/>
 
-                    <button className="button-login" onClick={onSubmit}>Entrar</button>
+                    <button className="button-login" onSubmit={handleSubmit(onSubmit)}>Entrar</button>
                 </form>
             </div>     
         </div>
