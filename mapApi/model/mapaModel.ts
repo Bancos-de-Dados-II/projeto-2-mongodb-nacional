@@ -7,8 +7,8 @@ import IMapa from "./repositories/IMapa";
 
 const LocalizacaoSchema = new Schema<ILocalizacao>({
   nome: {
-    type: String,
-    required: true,
+    type:String,
+   
   },
   type: {
     type: String,

@@ -1,20 +1,19 @@
 import { Request, Response } from "express";
 import MapaModel from "../model/mapaModel";
+import axios from "axios";
 
 export class MapController {
+
   async criarLocalizacao(req: Request, res: Response) {
     try {
-      const {
-        nome,
-        type,
-        coordinates } = req.body;
+      const { nome, type, coordinates } = req.body;
 
       const localizacao = new MapaModel({
         localizacao: {
           nome,
           type: 'Point',
-          coordinates
-        }
+          coordinates,
+        },
       });
 
       const resultado = await localizacao.save();
@@ -26,13 +25,13 @@ export class MapController {
     }
   }
 
-
- 
-async deletarLocalizacaoPorNome(req: Request, res: Response) {
+  async deletarLocalizacaoPorNome(req: Request, res: Response) {
     const nome = req.params.nome;
 
     try {
-      const resultado = await MapaModel.deleteOne({ "localizacao.nome": { $regex: new RegExp(nome, 'i') }}); //ignora o case sensitive
+      const resultado = await MapaModel.deleteOne({
+        "localizacao.nome": { $regex: new RegExp(nome, 'i') }, // Ignora case sensitive
+      });
       if (resultado.deletedCount > 0) {
         res.json({ message: 'Localização deletada com sucesso' });
       } else {
@@ -44,6 +43,7 @@ async deletarLocalizacaoPorNome(req: Request, res: Response) {
     }
   }
 
+ 
   async buscarLocalizacoes(req: Request, res: Response) {
     try {
       const localizacoes = await MapaModel.find();
@@ -53,65 +53,42 @@ async deletarLocalizacaoPorNome(req: Request, res: Response) {
     }
   }
 
+ 
   async buscarLocalizacaoPorNome(req: Request, res: Response) {
     const nome = req.params.nome;
-  
+
     try {
-        console.log(nome)
-        const resultado = await MapaModel.findOne({ 'localizacao.nome': { $regex: new RegExp(nome, 'i') } }); 
-        console.log('Localização encontrada:', resultado); 
-        res.status(200).json(resultado); 
-        return ;
-        
-      
+      console.log(nome);
+      const resultado = await MapaModel.findOne({
+        'localizacao.nome': { $regex: new RegExp(nome, 'i') },
+      });
+      console.log('Localização encontrada:', resultado);
+      res.status(200).json(resultado);
+      return;
     } catch (error) {
       console.error('Erro ao buscar localização:', error);
       res.status(500).json({ error: 'Erro ao buscar localização' });
     }
   }
+
+
   async atualizarLocalizacao(req: Request, res: Response) {
     const nome = req.params.nome;
-    const { newNome, newCoordinates } = req.body;
-  
+
     try {
       const resultado = await MapaModel.updateOne(
         { "localizacao.nome": nome },
-        {
-          $set: {
-            "localizacao.nome": newNome,
-            "localizacao.coordinates": newCoordinates, 
-          },
-        }
+        req.body
       );
-  
+
       if (resultado.modifiedCount > 0) {
-        res.status(200).json({ message: "Localização atualizada com sucesso" });
+        res.json({ message: "Localização atualizada com sucesso" });
       } else {
         res.status(404).json({ message: "Localização não encontrada" });
       }
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao atualizar a localização:", error);
       res.status(500).json({ error: "Erro ao atualizar a localização" });
     }
   }
-  
-
 }
-
-
-
-
-
- 
-    /* async  buscarPorNoomeLocalizacao(req: Request, res: Response){
-        const nome = req.params.nome;
-        const nomeLocalizacao = await MapaModel.find({
-           $text: {
-              $search: nome
-           }
-        }, {nome:1, _id:0}); //usand indice criando no mapaModel
-        res.json(nomeLocalizacao);
-     }
-    
-} */
-   

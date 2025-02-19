@@ -4,10 +4,11 @@ import L from "leaflet";
 import axiosApi from "../../services/axios.js";
 import logo from "../../../public/img/pinmapa.png";
 import "./styles.css";
-import BuscaGeocodificada from "../../components/BuscaGeocodificada"
 
 import LocationMarker from "../LocalizacaoAtual/index.jsx";
 import CadastraLocalizacao from "../FormCadastraLocalização/index.jsx";
+import BuscaGeocodificada from "../BuscaGeocodificada/index.jsx";
+
 
 
 const customIcon = new L.Icon({
@@ -19,20 +20,18 @@ const customIcon = new L.Icon({
 });
 
 function Mapa() {
-  const [locais, setLocais] = useState([]);  
+  const [locais, setLocais] = useState([]);
 
-  
   useEffect(() => {
     axiosApi
       .get("http://localhost:1010/map")
       .then((res) => {
-        setLocais(res.data);  
+        setLocais(res.data);
       })
       .catch((err) => {
         console.error("Erro ao buscar locais: ", err);
       });
-  }, []); 
-
+  }, []);
 
   const cadastrarLocalizacao = (novaLocalizacao) => {
     const dados = {
@@ -46,13 +45,11 @@ function Mapa() {
       },
     };
 
-    
-  
     axiosApi
       .post("http://localhost:1010/map", dados)
       .then((res) => {
         console.log("Localização cadastrada com sucesso!");
-        setLocais((prevLocais) => [...prevLocais, res.data]); // Atualiza a lista de locais com a nova localização
+        setLocais((prevLocais) => [...prevLocais, res.data]); // Atualiza a lista de locais
       })
       .catch((err) => {
         console.error("Erro ao cadastrar localização: ", err.response || err.message, err);
@@ -61,8 +58,7 @@ function Mapa() {
 
   return (
     <div className="container-mapa">
-       <div className="flex-container">
-     
+      <div className="container-mapa-principal">
       <MapContainer
         className="mapa"
         center={[-6.888601818211769, -38.56707625327777]}
@@ -74,37 +70,34 @@ function Mapa() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
 
-        {/* mostra cadastrados e adiciona um marcador */}
         {locais.map((local) => {
           const latitude = parseFloat(local.localizacao.coordinates[1]);
           const longitude = parseFloat(local.localizacao.coordinates[0]);
 
-         
-          if (isNaN(latitude) || isNaN(longitude) || latitude === 0 || longitude === 0) {
-            console.log("Coordenadas inválidas:", latitude, longitude);
-            return null; 
+          
+          if (!isNaN(latitude) && !isNaN(longitude)) {
+            console.log("Coordenadas válidas:", latitude, longitude);  
+            return (
+              <Marker
+                key={local._id}
+                position={[latitude, longitude]}
+                icon={customIcon}
+              >
+                <Popup>{local.localizacao.nome}</Popup>
+              </Marker>
+            );
+          } else {
+            console.error("Coordenadas inválidas:", latitude, longitude);
+            return null;
           }
-
-          return (
-            <Marker
-              key={local._id}
-              position={[latitude, longitude]}
-              icon={customIcon}
-            >
-              <Popup>{local.localizacao.nome}</Popup>
-            </Marker>
-          );
         })}
-
-        <LocationMarker />  {/*minha localizacao atual*/}
+        <LocationMarker />
       </MapContainer>
       <div className="campo-busca">
-        <div className="campo-container-busca">
-         <BuscaGeocodificada />
-          <CadastraLocalizacao onSubmit={cadastrarLocalizacao} /> 
-          </div>
-      </div>
-      </div>
+    
+        <BuscaGeocodificada/>
+      <CadastraLocalizacao onSubmit={cadastrarLocalizacao} /></div>
+    </div>
     </div>
   );
 }
