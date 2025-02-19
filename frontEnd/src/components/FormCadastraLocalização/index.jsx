@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axiosApi from "../../services/axios";
 import "../FormCadastraLocalização/styles.css"
+// eslint-disable-next-line react/prop-types
 export default function CadastraLocalizacao({ onSubmit }) {
   const [nome, setNome] = useState("");
   const [erro, setErro] = useState("");
@@ -18,10 +19,13 @@ export default function CadastraLocalizacao({ onSubmit }) {
         },
       });
 
-      console.log("Resposta da API:", response.data); 
+      const dataApiNomaitim = await response.data;
 
-      if (response.data.length > 0) {
-        const localizacao = response.data[0];
+      console.log("Resposta da API:", dataApiNomaitim); 
+
+      if (dataApiNomaitim.length > 0) {
+        const localizacao = dataApiNomaitim[0];
+      
         const novaLocalizacao = {
           nome,
           coordinates: [localizacao.lon, localizacao.lat],
@@ -32,7 +36,6 @@ export default function CadastraLocalizacao({ onSubmit }) {
 
         if (novaLocalizacao.coordinates[0] && novaLocalizacao.coordinates[1]) {
           onSubmit(novaLocalizacao); // Envia os dados de volta para o componente 
-          setNome(""); 
           setErro(""); 
         } else {
           setErro("Coordenadas inválidas.");

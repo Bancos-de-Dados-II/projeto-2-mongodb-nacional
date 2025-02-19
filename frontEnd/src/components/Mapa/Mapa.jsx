@@ -43,15 +43,19 @@ function Mapa() {
   }, []);
 
   const cadastrarLocalizacao = (novaLocalizacao) => {
+    console.log("CHEGANDO PARA SALVAR NO MONGO");
+
+    console.log(novaLocalizacao);
+
     const dados = {
       localizacao: {
         nome: novaLocalizacao.nome,
         type: "Point",
         coordinates: [
-          parseFloat(novaLocalizacao.coordinates[0]),
-          parseFloat(novaLocalizacao.coordinates[1]),
-        ],
-      },
+          novaLocalizacao.coordinates[0],
+          novaLocalizacao.coordinates[1]
+        ]
+      }
     };
 
     axiosApi
@@ -82,6 +86,10 @@ function Mapa() {
         {locais.map((local) => {
           const latitude = parseFloat(local.localizacao.coordinates[1]);
           const longitude = parseFloat(local.localizacao.coordinates[0]);
+
+          console.log("COORDENADAS NA RENDERIZAÇÃO")
+          console.log(latitude)
+          console.log(longitude);
 
           
           if (!isNaN(latitude) && !isNaN(longitude)) {

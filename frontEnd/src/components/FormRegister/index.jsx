@@ -15,9 +15,11 @@ export default function FormRegister(){
         if (result) {
             userService.redirectPage("login");
             alert("Conta criada com sucesso!");
+        } 
+        else {
+            alert("Falha ao criar conta, tente novamente");
         }
         
-        alert("Falha ao criar conta, tente novamente");
     };
 
     return (

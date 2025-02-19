@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
 import MapaModel from "../model/mapaModel";
-import axios from "axios";
 
 export class MapController {
 
   async criarLocalizacao(req: Request, res: Response) {
     try {
-      const { nome, type, coordinates } = req.body;
+      console.log("BODY DA REQUISIÇÂO NO CONTROLLER")
+      console.log(req.body);
+      const { localizacao } = req.body;
+      const { nome, coordinates } = localizacao 
 
-      const localizacao = new MapaModel({
+      const localizacaoToSave = new MapaModel({
         localizacao: {
           nome,
           type: 'Point',
@@ -16,7 +18,7 @@ export class MapController {
         },
       });
 
-      const resultado = await localizacao.save();
+      const resultado = await localizacaoToSave.save();
       console.log("Localização salva:", resultado);
       res.status(201).json(resultado);
     } catch (error) {

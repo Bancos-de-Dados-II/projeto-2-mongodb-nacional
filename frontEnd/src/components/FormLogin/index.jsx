@@ -13,12 +13,13 @@ export default function FormLogin() {
     //deve receber data
     const onSubmit = async (data) => {
         const { email, password } = data;
-        // const { email} = data;
-        // const email = "pires@gmail.com"
+
+        console.log(email)
+        console.log(password)
     
         const userJson = await userService.get(email);
 
-        const isOk = await userService.validateUser(userJson, "12345678");
+        const isOk = await userService.validateUser(userJson, password);
 
         if (isOk) {
             userService.redirectPage("servicos");
@@ -37,7 +38,7 @@ export default function FormLogin() {
                 <label>Login</label>
             </div>
             <div className="form-campos">
-                <form action="#">
+                <form action="#" onSubmit={handleSubmit(onSubmit)}>
                     <label className="email-text">Insira seu email:</label>
                     <input className="email-input" type="email" {...register("email",{
                         required: "O email é obrigatório",
@@ -58,7 +59,7 @@ export default function FormLogin() {
                     <ErrorMessage errors={ errors } name="senha" message="Deve haver pelo menos 6 caracteres" as = "span" />
                     <br/>
 
-                    <button className="button-login" onSubmit={handleSubmit(onSubmit)}>Entrar</button>
+                    <button className="button-login">Entrar</button>
                 </form>
             </div>     
         </div>

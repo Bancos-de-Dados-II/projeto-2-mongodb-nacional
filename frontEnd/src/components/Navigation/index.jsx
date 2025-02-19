@@ -1,7 +1,5 @@
 import "./styles.css"
 import { Link } from "react-router-dom";
-import Contato from "../../pages/Contato";
-import PaginaMapa from "../../pages/Mapa";
 
 
 export default function Navigation() {
@@ -12,7 +10,7 @@ export default function Navigation() {
                     <Link to={"/"}>Home</Link>
                 </li>
                 <li>
-                    <Link to={"/"}>Sobre nós</Link>
+                    <a href={"/#about-us-section"}>Sobre nós</a>
                 </li>
                 <li>
                     <Link to={"/servicos"}>Serviços</Link>

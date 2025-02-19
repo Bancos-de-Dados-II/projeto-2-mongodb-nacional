@@ -17,6 +17,6 @@ function PaginaMapa() {
       <Footer/>
     </div>
   );
-} assim
+}
 
 export default PaginaMapa;
