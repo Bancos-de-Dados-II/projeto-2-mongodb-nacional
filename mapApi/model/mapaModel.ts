@@ -7,8 +7,8 @@ import IMapa from "./repositories/IMapa";
 
 const LocalizacaoSchema = new Schema<ILocalizacao>({
   nome: {
-    type: String,
-    required: true,
+    type:String,
+   
   },
   type: {
     type: String,
@@ -34,7 +34,7 @@ const MapaSchema = new Schema<IMapa>({
 
 
 //indice para usar  busca com $text
-MapaSchema.index({nome: "text"},
+MapaSchema.index({"localizacao.nome": "text"},
   {default_language: "pt"});
 
 const MapaModel = mongoose.model<IMapa>("mapa", MapaSchema);

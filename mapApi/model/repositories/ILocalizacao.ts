@@ -1,6 +1,6 @@
 
 interface ILocalizacao {
-    nome: String;
+    nome: string;
     type: 'Point';
     coordinates: [number, number];
 }
