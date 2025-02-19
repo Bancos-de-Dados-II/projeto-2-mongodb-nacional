@@ -4,12 +4,15 @@ import "./styles.css"
 
 export function Register(){
     return(
-        <section className="login-section">
-            <div className="lateral-section">
-                <ButtonBack/>
-                <img src="/img/logo.png"></img>
+        <section className="register-page-section">
+            <div className="lateral-page-section">
+                <div className="button-back-register">
+                    <ButtonBack/>
+                </div>
+       
+                <img className="img-logo-register" src="/img/logo.png"></img>
             </div>
-            <div className="form-login-section">
+            <div className="form-register-page-section">
                 <FormRegister/>
             </div>
         </section>

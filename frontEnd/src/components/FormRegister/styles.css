@@ -1,0 +1,35 @@
+.form-register{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+.title-text-register{
+    margin-top: 60px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+.input{
+    margin-left: 29px;
+    width: 300px;
+    margin-bottom: 30px;
+}
+.button-send-register{
+    margin-top: 40px;
+    margin-left:140px ;
+    background-color: brown;
+    border-radius: 12px;
+    height: 40px;
+    width: 100px;
+    color:beige;
+}
+.register-campos{
+    display: flex;
+    flex-direction: column;
+}
+
+.register-text{
+    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-left: 165px;
+}

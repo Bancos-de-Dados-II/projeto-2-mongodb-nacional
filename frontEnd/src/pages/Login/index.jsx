@@ -4,12 +4,14 @@ import "./styles.css"
 
 export function Login(){
     return(
-        <section className="login-section">
-            <div className="lateral-section">
-                <ButtonBack/>
-                <img src="/img/logo.png"></img>
+        <section className="login-page-section">
+            <div className="lateral-page-section">
+                <div className="button-back-login">
+                <ButtonBack />
+                </div>  
+                <img className="img-logo-login" src="/img/logo.png"></img>
             </div>
-            <div className="form-login-section">
+            <div className="form-login-page-section">
                 <FormLogin/>
             </div>
         </section>
