@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../BuscaGeocodificada/styles.css";
-import { FaSearch } from 'react-icons/fa';
+// import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 
 

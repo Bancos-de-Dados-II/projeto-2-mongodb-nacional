@@ -11,9 +11,7 @@ export function Login(){
                 </div>  
                 <img className="img-logo-login" src="/img/logo.png"></img>
             </div>
-            <div className="form-login-page-section">
-                <FormLogin/>
-            </div>
+            <FormLogin/>
         </section>
     )
 }

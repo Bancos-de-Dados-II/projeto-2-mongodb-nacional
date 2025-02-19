@@ -1,7 +1,11 @@
 .form-register{
     display: flex;
     flex-direction: column;
-    width: 200px;
+    margin-top: 100px;
+    margin-bottom: 85px;
+    width: 400px;
+    border-radius: 10px;
+    border:1px solid black;
 }
 .title-text-register{
     margin-top: 60px;
@@ -15,8 +19,8 @@
     margin-bottom: 30px;
 }
 .button-send-register{
-    margin-top: 40px;
-    margin-left:140px ;
+    margin-top: 0px;
+    margin-left:60px ;
     background-color: brown;
     border-radius: 12px;
     height: 40px;
@@ -32,4 +36,12 @@
     margin-bottom: 40px;
     margin-top: 30px;
     margin-left: 165px;
+}
+.msgError{
+    margin-left: 20px;
+    color: red;
+}
+.buttons-register{
+    display: flex;
+    flex-direction: row;
 }

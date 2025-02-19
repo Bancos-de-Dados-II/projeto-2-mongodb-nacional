@@ -18,6 +18,9 @@ export default function Navigation() {
                 <li>
                     <Link to="/Contato">Contato</Link>
                 </li>
+                <li>
+                    <Link to="/Login">Login</Link>
+                </li>
             </ul>
         </nav>
     );

@@ -12,9 +12,8 @@ export function Register(){
        
                 <img className="img-logo-register" src="/img/logo.png"></img>
             </div>
-            <div className="form-register-page-section">
-                <FormRegister/>
-            </div>
+            <FormRegister/>
+
         </section>
     )
 }

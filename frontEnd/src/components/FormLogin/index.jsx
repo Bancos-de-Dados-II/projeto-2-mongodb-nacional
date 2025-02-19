@@ -2,6 +2,7 @@ import LocalStorageService from "../../services/localStorage/LocalStorageService
 import UserServices from "../../services/user/UserServices";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom"
 import "./styles.css"
 
 export default function FormLogin() {
@@ -52,14 +53,19 @@ export default function FormLogin() {
                         }
                         })} 
                         />
-                        <ErrorMessage errors={ errors } name="email" message={errors.email?.message} as = "span" />
+                        <br/>
+                        <ErrorMessage className="msgError" errors={ errors } name="email" message={errors.email?.message} as = "span" />
                     <br/>
                     <label className="password-text">Insira sua senha:</label>
                     <input className="password-input" type="password"{...register("password", { required: true, minLength: 6 })} />
-                    <ErrorMessage errors={ errors } name="senha" message="Deve haver pelo menos 6 caracteres" as = "span" />
+                    <ErrorMessage className="msgError" errors={ errors } name="senha" message="Deve haver pelo menos 6 caracteres" as = "span" />
                     <br/>
 
                     <button className="button-login">Entrar</button>
+                    <br/>
+                    <Link className="redirecionar-cadastro" to  = "/cadastro">
+                        Não tem uma conta ainda? Cadastre-se
+                    </Link>
                 </form>
             </div>     
         </div>
