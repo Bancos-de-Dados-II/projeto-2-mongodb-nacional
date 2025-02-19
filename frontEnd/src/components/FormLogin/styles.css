@@ -1,31 +1,44 @@
 .form-login{
-   background-color: beige;
-   display: flex;
+    display: flex;
    flex-direction: column;
+   width: 200px;
 }
 .email-text{
-    margin: 25px;
+    margin-top: 60px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 30px;
 }
 .email-input{
     margin-left: 29px;
-    margin-right: 25px;
+    width: 300px;
+    margin-bottom: 30px;
 }
 .password-text{
+    margin-left: 29px;
     margin: 25px;
 }
 .password-input{
     margin-left: 29px;
     margin-right: 25px;
     margin-bottom: 50px;
+    width: 300px;
 }
 .login-text{
+    margin-bottom: 40px;
     margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-left: 165px;
 }
 .form-campos{
     display: flex;
     flex-direction: column;
-    background-color: beige;
 }
+.button-login{
+    margin-top: 40px;
+    margin-left:140px ;
+    background-color: brown;
+    border-radius: 12px;
+    height: 40px;
+    width: 100px;
+    color:beige;
+}    

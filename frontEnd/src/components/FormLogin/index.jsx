@@ -1,9 +1,10 @@
 import LocalStorageService from "../../services/localStorage/LocalStorageService";
 import UserServices from "../../services/user/UserServices";
+import { useForm } from "react-hook-form";
 import "./styles.css"
 
 export default function FormLogin() {
-
+    const { register, handleSubmit, formState: { errors } } = useForm({mode: "onBlur"});
     const userService = new UserServices();
     const storageService = new LocalStorageService();
 
@@ -35,7 +36,7 @@ export default function FormLogin() {
                     <label className="password-text">Insira sua senha:</label>
                     <input className="password-input"></input>
 
-                    <button onClick={onSubmit}>Login</button>
+                    <button className="button-login" onClick={onSubmit}>Entrar</button>
                 </form>
             </div>     
         </div>
