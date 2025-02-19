@@ -58,7 +58,7 @@ export default function CadastraLocalizacao({ onSubmit }) {
           onChange={(e) => setNome(e.target.value)}
           required
         />
-        <button type="submit">Cadastrar</button>
+        <button className="botao-localizacao" type="submit">Cadastrar</button>
       </form>
       {erro && <p className="erro">{erro}</p>}
     </div>

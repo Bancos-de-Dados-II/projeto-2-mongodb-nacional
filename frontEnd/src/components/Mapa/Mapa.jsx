@@ -95,7 +95,7 @@ function Mapa() {
       </MapContainer>
       <div className="campo-busca">
     
-        <BuscaGeocodificada/>
+      <BuscaGeocodificada/>
       <CadastraLocalizacao onSubmit={cadastrarLocalizacao} /></div>
     </div>
     </div>
