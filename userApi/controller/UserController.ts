@@ -25,7 +25,7 @@ export default class UserControll {
 
     public findByEmail = async (request:Request, response:Response) => {
         try {
-            const { email } = request.query as {email: string};
+            const { email } = request.params as {email: string};
 
             const result = await this.userService.findByEmail(email);
             //retorna um UserDTO com as informações principais: nome, email e senha

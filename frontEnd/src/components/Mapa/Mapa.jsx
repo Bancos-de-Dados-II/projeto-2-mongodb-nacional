@@ -8,8 +8,8 @@ import "./styles.css";
 import LocationMarker from "../LocalizacaoAtual/index.jsx";
 import CadastraLocalizacao from "../FormCadastraLocalização/index.jsx";
 import BuscaGeocodificada from "../BuscaGeocodificada/index.jsx";
-
-
+import LocalStorageService from "../../services/localStorage/LocalStorageService.js";
+import UserServices from "../../services/user/UserServices.js";
 
 const customIcon = new L.Icon({
   iconUrl: logo,
@@ -20,9 +20,18 @@ const customIcon = new L.Icon({
 });
 
 function Mapa() {
+
+  const storage = new LocalStorageService();
+  const userService = new UserServices();
+
   const [locais, setLocais] = useState([]);
 
   useEffect(() => {
+    if (!storage.getData()) {
+      alert("Você não está autorizado a acessar essa página, faça o login e tente novamente");
+      userService.redirectPage("login");
+    }
+
     axiosApi
       .get("http://localhost:1010/map")
       .then((res) => {
