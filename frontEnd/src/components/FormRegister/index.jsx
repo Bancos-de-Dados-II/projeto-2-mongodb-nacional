@@ -49,8 +49,8 @@ export default function FormRegister(){
                         
 
                     <br/>
-                    <label className="title-text-register">Telefone:</label>
-                    <input className="input" type = "tel" {...register("telefone", { 
+                    <label className="telefone-text">Telefone:</label>
+                    <input type = "tel" {...register("InserirTelefone", { 
                         required: true,
                         maxLength:{
                             value:11,
