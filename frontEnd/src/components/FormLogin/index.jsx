@@ -1,22 +1,18 @@
-import LocalStorageService from "../../services/localStorage/LocalStorageService";
 import UserServices from "../../services/user/UserServices";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom"
 import "./styles.css"
+import RedisService from "../../services/redis/RedisService";
 
 export default function FormLogin() {
     const { register, handleSubmit, formState: { errors } } = useForm({mode: "onBlur"});
     const userService = new UserServices();
-    const storageService = new LocalStorageService();
-
+    const redisService = new RedisService();
  
     //deve receber data
     const onSubmit = async (data) => {
         const { email, password } = data;
-
-        console.log(email)
-        console.log(password)
     
         const userJson = await userService.get(email);
 
@@ -25,7 +21,7 @@ export default function FormLogin() {
         if (isOk) {
             userService.redirectPage("servicos");
             alert("Aproveite a plataforma!");
-            storageService.setData(email);
+            await redisService.persistDataSection(JSON.stringify(data));
         }
         else{
             alert("Email ou senha incorretos!");

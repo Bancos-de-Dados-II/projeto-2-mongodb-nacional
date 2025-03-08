@@ -11,5 +11,6 @@ export default class ClientRedis {
         }
 
         return this.redisClient;
-    }    
+    }
+
 }

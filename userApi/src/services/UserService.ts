@@ -1,5 +1,6 @@
 import UserDTO from "../model/dto/UserDTO";
-import UserRepository from "../repository/UserRepository";
+import DataBaseException from "../model/exceptions/DataBaseException";
+import UserRepository from "../repository/UserRepository"
 import bcryptjs from "bcryptjs";
 
 export default class UserService {
@@ -17,14 +18,14 @@ export default class UserService {
     public save = async (user: UserDTO) => {
         try {
             //criptografando o email e a senha no salvamento dos dados
-            const response = await this.userRepository.saveOne(
-                user.getName(), 
-                user.getEmail(), 
-                await this.encriptData(user.getPassword()));
+            const response = await this.userRepository.saveOne({
+                ...user,
+                password: await this.encriptData(user.getPassword())});
 
             return response;
         } catch (error) {
-            throw new Error(`Error in save one: ${error}`);
+            const asError = error as Error;
+            throw new DataBaseException(asError.message);
         }
     }
 
@@ -38,7 +39,7 @@ export default class UserService {
         } catch(error) {
             const asError = error as Error;
 
-            throw new Error(asError.message);
+            throw new DataBaseException(asError.message);
         }
     }
 }

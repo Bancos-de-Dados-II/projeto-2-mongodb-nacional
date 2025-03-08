@@ -4,12 +4,11 @@ import L from "leaflet";
 import axiosApi from "../../services/axios.js";
 import logo from "../../../public/img/pinmapa.png";
 import "./styles.css";
-
 import LocationMarker from "../LocalizacaoAtual/index.jsx";
 import CadastraLocalizacao from "../FormCadastraLocalização/index.jsx";
 import BuscaGeocodificada from "../BuscaGeocodificada/index.jsx";
-import LocalStorageService from "../../services/localStorage/LocalStorageService.js";
 import UserServices from "../../services/user/UserServices.js";
+import RedisService from "../../services/redis/RedisService.js";
 
 const customIcon = new L.Icon({
   iconUrl: logo,
@@ -20,16 +19,20 @@ const customIcon = new L.Icon({
 });
 
 function Mapa() {
-
-  const storage = new LocalStorageService();
   const userService = new UserServices();
+  const redisService = new RedisService();
 
   const [locais, setLocais] = useState([]);
 
   useEffect(() => {
-    if (!storage.getData()) {
-      alert("Você não está autorizado a acessar essa página, faça o login e tente novamente");
-      userService.redirectPage("login");
+
+    const runRedis = async () => {
+      const sectionData = await redisService.getDataSection();
+
+      if (!sectionData) {
+        alert("Você não está autorizado a acessar essa página, faça o login e tente novamente");
+        userService.redirectPage("login");
+      }
     }
 
     axiosApi
@@ -40,12 +43,11 @@ function Mapa() {
       .catch((err) => {
         console.error("Erro ao buscar locais: ", err);
       });
+
+      runRedis();
   }, []);
 
   const cadastrarLocalizacao = (novaLocalizacao) => {
-    console.log("CHEGANDO PARA SALVAR NO MONGO");
-
-    console.log(novaLocalizacao);
 
     const dados = {
       localizacao: {
